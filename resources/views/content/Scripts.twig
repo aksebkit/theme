@@ -1,0 +1,29 @@
+<script>
+function getTitle(text){
+    return text.split('&&')[0];
+}
+function getDesc(text){
+    return text.split('&&')[1];
+}
+$(document).ready(function(){
+	$('.mobile-navigation .breadcrumb').click(function(){window.location.href= $('.brand-wrapper > a').attr('href')})
+    var elements = $('div.footer .row .col > div.widget.widget-grid > .widget-inner');
+    var products = $('div.footer .row .col > div.widget.widget-item-list > .widget-inner > .row > div');
+    var images  = elements.find('.img-cover');
+    images = images.toArray();
+    var descs = elements.find('.widget-inner .widget-caption').children('h2').toArray();
+    var links = $('div.footer .row .col > div.widget.widget-grid > .widget-inner a').toArray();
+    descs = descs.map(function(element){
+        return element.childNodes[1].nodeValue;
+    })
+    var $to_add1 = ('<hr><div class="row"><div id=cats_2_container class=col><div class=category_block><img src='+images[0].src+'><h2>'+getTitle(descs[0])+'</h2><h4>'+getDesc(descs[0])+'</h4><a class=check href='+links[0].getAttribute("href")+'>check out</a></div><div class=category_block><img src='+images[1].src+'><h2>'+getTitle(descs[1])+'</h2><h4>'+getDesc(descs[1])+'</h4><a class=check href='+links[1].getAttribute("href")+'>check out</a></div></div></div>');
+    var $to_add2 = ('<hr><div class="row"><div id=cats_1_container class=col><div class=single_category_block><div class=photo style="background-image: url('+images[2].src+'"></div><div class=content><h2>'+getTitle(descs[2])+'</h2><h4>'+getDesc(descs[2])+'</h4><a class=check href='+links[2].getAttribute("href")+'>check out</a></div></div></div>');
+    var $to_add3 = ('<hr><div class="row"><div id=product_container class=col><h4>recommended for you</h4></div></div>');
+    var $to_add4 = ('<hr><div class="row"><div id=cats_2_container2 class=col><div class=category_block><img src='+images[3].src+'><h2>'+getTitle(descs[3])+'</h2><h4>'+getDesc(descs[3])+'</h4><a class=check href='+links[3].getAttribute("href")+'>check out</a></div><div class=category_block><img src='+images[4].src+'><h2>'+getTitle(descs[4])+'</h2><h4>'+getDesc(descs[4])+'</h4><a class=check href='+links[4].getAttribute("href")+'>check out</a></div></div></div>');
+    $('#page-body > .home').append($to_add1);
+    $('#page-body > .home').append($to_add4);
+    $('#page-body > .home').append($to_add2);
+    $('#page-body > .home').append($to_add3);
+    $('#product_container').append(products);
+})
+</script>
